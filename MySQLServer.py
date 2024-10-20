@@ -1,4 +1,5 @@
 import mysql.connector
+#from mysql.connector import Error
 
 try:
     mydb = mysql.connector.connect(
@@ -11,13 +12,13 @@ try:
         cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
         print("'alx_book_store' created successfully!")
 
-    except Error ase:
+except mysql.connector.Error as e:
 
-        print("Error: failed to cennect to data base")
+    print("Error: failed to cennect to data base")
 
-    finally:
-        if connection.is_connected():
-            cursor.close()
-            mydb.close()
-            print("connection closed")
+finally:
+    if mydb.is_connected():
+        cursor.close()
+        mydb.close()
+        print("connection closed")
 
